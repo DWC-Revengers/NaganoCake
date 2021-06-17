@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   devise_for :customers
   namespace :public do
    root 'homes#top'
-   get 'homes/about' => 'public/homes#about', as: 'about'
+   get 'homes/about' => 'homes#about', as: 'about'
    resources :customers, only: [:show, :edit, :update] do
      collection do
        get 'hide'
