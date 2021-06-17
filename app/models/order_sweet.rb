@@ -1,0 +1,2 @@
+class OrderSweet < ApplicationRecord
+end
