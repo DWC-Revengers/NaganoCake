@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="my-5"></h2><%= @custmer.family_name %><%= @customer.first_name %>さんの会員詳細</h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 text-center">
+      <table class=table>
+        <tbody>
+          <tr><th>会員ID</th><th><%= @custmer.id %></th></tr>
+          <tr><th>氏名</th><th><%= @custmer.family_name %><%= @custmer.first_name %></th></tr>
+          <tr><th>フリガナ</th><th><%= @custmer.family_name_kana %><%= @custmer.first_name_kana %></th></tr>
+          <tr><th>郵便番号</th><th><%= @custmer.postal_code %></th></tr>
+          <tr><th>住所</th><th><%= @custmer.address %></th></tr>
+          <tr><th>電話番号</th><th><%= @custmer.phone_number %></th></tr>
+          <tr><th>メールアドレス</th><th><%= @custmer.email %></th></tr>
+          
+          <tr>
+            <th>会員ステータス</th>
+            <td><% if @customer.is_deleted == false %>
+            有効
+            <% else %>
+            退会中
+            <% end %></td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-primary" %>
+      <%= link_to "注文履歴一覧を見る", admin_path,path, class: "btn btn-primary" %>
+      </div>
+  </div>
+</div>
