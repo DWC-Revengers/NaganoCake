@@ -33,7 +33,7 @@
                 <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_manager_session_path, class: 'nav-link text-light' %>
+                <%= link_to "ログアウト", destroy_manager_session_path, method: :delete class: 'nav-link text-light' %>
               </li>
               <% elsif customer_signed_in? %>
               <li>
@@ -46,7 +46,7 @@
                 <%= link_to "カート", public_cart_items_path, class: 'nav-link text-light' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, class: 'nav-link text-light' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete class: 'nav-link text-light' %>
               </li>
               <% else %>
               <li>
