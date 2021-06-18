@@ -9,7 +9,10 @@ Rails.application.routes.draw do
    resources :order_sweets, only: [:update]
  end
 
-  devise_for :customers
+  devise_for :customers, controllers: {
+   sessions: 'customers/sessions',
+   registrations: 'customers/registrations'
+  }
   namespace :public do
    root 'homes#top'
    get 'homes/about' => 'homes#about', as: 'about'
