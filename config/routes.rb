@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :managers
+  devise_for :managers, controllers: {
+  sessions: 'managers/sessions'
+  }
   namespace :admin do
    root 'homes#top'
    resources :customers, only: [:index, :show, :edit, :update]
