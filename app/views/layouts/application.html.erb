@@ -37,7 +37,7 @@
               </li>
               <% elsif customer_signed_in? %>
               <li>
-                <%= link_to "マイページ", public_customer_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "マイページ", public_customer_path(current_customer.id), class: 'nav-link text-light text-dark' %>
               </li>
               <li>
                 <%= link_to "商品一覧", public_sweets_path, class: 'nav-link text-light text-dark' %>
