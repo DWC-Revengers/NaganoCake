@@ -11,7 +11,7 @@ class Admin::SweetsController < ApplicationController
   def create
     @sweet = Sweet.new(sweet_params)
     @sweet.save
-    redirect_to admin_sweet_path(sweet.id)
+    redirect_to admin_sweet_path(@sweet.id)
   end
 
   def show
