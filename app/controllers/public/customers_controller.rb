@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
 
   def update
@@ -15,14 +15,19 @@ class Public::CustomersController < ApplicationController
   end
 
   def hide
+    @customer = Customer.find(params[:id])
   end
 
   def withdraw
+    @customer = Customer.find(params[:id])
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to public_root_path
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:family_name,:first_name,:family_name_kana,:first_name_kana,:postal_code,:adress,:phone_number,:email)
+    params.require(:customer).permit(:family_name,:first_name,:family_name_kana,:first_name_kana,:postal_code,:adress,:phone_number,:email,:is_deleted)
   end
 end
