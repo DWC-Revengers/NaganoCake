@@ -11,10 +11,11 @@ class Admin::SweetsController < ApplicationController
   def create
     @sweet = Sweet.new(sweet_params)
     @sweet.save
-    redirect_to admin_sweets_path
+    redirect_to admin_sweet_path(sweet.id)
   end
 
   def show
+    @sweet = Sweet.find(params[:id])
   end
 
   def edit
