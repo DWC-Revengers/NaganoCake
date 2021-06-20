@@ -19,9 +19,10 @@ Rails.application.routes.draw do
    root 'homes#top'
    get 'homes/about' => 'homes#about', as: 'about'
    resources :customers, only: [:show, :edit, :update] do
-     collection do
-       get 'hide'
-       patch 'withdraw'
+
+     member do
+      get 'hide'
+      patch 'withdraw'
      end
    end
 
