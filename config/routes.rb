@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   sessions: 'managers/sessions'
   }
   namespace :admin do
-   root 'homes#top'
    resources :customers, only: [:index, :show, :edit, :update]
    resources :orders, only: [:show, :update]
    resources :sweets, only: [:index, :new, :create, :show, :edit, :update]
