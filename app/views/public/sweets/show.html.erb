@@ -36,6 +36,7 @@
               </div>
               <div class="col-md-6 text-left" style="margin-top: 8px;">
                 <%= f.submit "カートに入れる", class: "btn btn-sm btn-success" %>
+                <%= f.hidden_field :sweet_id, :value => @sweet.id %>
               </div>
             </div>
           <% end %>
