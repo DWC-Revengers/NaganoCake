@@ -8,6 +8,15 @@ class Customer < ApplicationRecord
     super && (self.is_deleted == false)
   end
 
+  def customer_address
+    postal_code + address
+  end
+
+  def customer_name
+    family_name + first_name
+  end
+
   has_many :addresses, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :ordes, dependent: :destroy
 end
