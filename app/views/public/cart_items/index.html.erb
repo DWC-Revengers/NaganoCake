@@ -49,7 +49,8 @@
           <% end %>
           <td>
             <div style="margin-top: 18px;">
-              <%= item.amount * item.sweet.add_tax_unit_price %>
+              <% @subtotal = (item.amount.to_i * item.sweet.add_tax_unit_price) %>
+              <%= @subtotal.to_s(:delimited) %>
             </div>
           </td>
           <td>
@@ -58,7 +59,7 @@
             </div>
           </td>
         </tbody>
-        <% @sum += (item.amount * item.sweet.add_tax_unit_price) %>
+        <% @sum += (item.amount.to_i * item.sweet.add_tax_unit_price) %>
       <% end %>
       </table>
       <div class="row mt-5">

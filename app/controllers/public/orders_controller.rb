@@ -4,10 +4,29 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-
+    @orders = Order.all
+    @order_shipping = 800
+    @order = Order.new(order_params)
+    if params[:order][:address_status] == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.family_name + current_customer.first_name
+    elsif params[:order][:address_status] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    else
+    end
+    @cart_items = current_customer.cart_items
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.status = 1
+    @order.save
+    redirect_to complete_public_orders_path
   end
 
   def complete
@@ -17,5 +36,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:customer_id, :address, :postal_code, :name, :payment_method, :total_price, :status, :address_status, :shipping)
   end
 end
