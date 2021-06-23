@@ -4,17 +4,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    if params[:order][:payment_method] =="0"
 
-    elsif params[:order][:payment_method] =="1"
-
-    end
-
-    if params[:order][:address] == "residence"
-      @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
-      @order.name = current_customer.family_name + current_customer.first_name
-    end
   end
 
   def create
