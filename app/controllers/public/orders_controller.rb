@@ -26,6 +26,16 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.status = 1
     @order.save
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      OrderSweet.create(
+        sweet_id: cart_item.sweet.id,
+        order_id: @order.id,
+        amount: cart_item.amount,
+        sub_price: cart_item.sweet.unit_price
+      )
+    end
+    CartItem.destroy_all
     redirect_to complete_public_orders_path
   end
 
@@ -33,6 +43,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
