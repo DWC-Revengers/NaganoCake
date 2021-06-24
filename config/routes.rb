@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
    resources :customers, only: [:index, :show, :edit, :update]
-   resources :orders, only: [:show, :update]
+   resources :orders, only: [:index, :show, :update]
    resources :sweets, only: [:index, :new, :create, :show, :edit, :update]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :order_sweets, only: [:update]

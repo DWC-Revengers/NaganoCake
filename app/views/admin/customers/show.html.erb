@@ -1,6 +1,6 @@
 <div class="container">
   　<div class="row">
-   
+
      <div class="col-md-4 text-center" style="margin: 30px 0 35px 0; font-size: 40px;">
       <h3 style="background-color: #dddddd"><%= @customer.family_name %><%= @customer.first_name %>さんの会員詳細</h3>
      </div>
@@ -14,23 +14,23 @@
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.id %></p>
    </div>
-  
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>氏名</p>
      </div>
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.family_name %>&nbsp;<%= @customer.first_name %></p>
-   </div>    
-          
+   </div>
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>フリガナ</p>
      </div>
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.family_name_kana %>&nbsp;<%= @customer.first_name_kana %></p>
-   </div>  
-          
+   </div>
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>郵便番号</p>
@@ -38,15 +38,15 @@
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.postal_code %></p>
    </div>
-  
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>住所</p>
      </div>
       <div class="col-md-1 text-left"></div>
       <p><%= @customer.address %></p>
-   </div>  
-        
+   </div>
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>電話番号</p>
@@ -54,15 +54,15 @@
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.phone_number %></p>
    </div>
-  
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>メールアドレス</p>
      </div>
      <div class="col-md-1 text-left"></div>
       <p><%= @customer.email %></p>
-   </div>    
-         
+   </div>
+
    <div class="row" style="font-size: 17px;">
      <div class="col-md-2 text-left">
       <p>会員ステータス</p>
@@ -73,9 +73,10 @@
          <% else %>
             退会
          <% end %></p>
-   </div>       
-  
+   </div>
+
       <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
-      <%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary" %>
-  
+      <%= link_to "注文履歴一覧を見る", admin_orders_path(address: @customer.id), class: "btn btn-primary" %>
+      <!--<%#= hidden_field_tag :address, @customer.id %>-->
+
 </div>
