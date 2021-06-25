@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
-      <h5 style="background-color: #dddddd">新規会員登録</h5>
+      <h5 style="background-color: #cd5c5c; color: white;">新規会員登録</h5>
     </div>
   </div>
   <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
@@ -113,7 +113,7 @@
   <% end %>
   <div class="row">
     <div class="col-md-3 text-center" style="margin: 30px 0 35px 0;">
-      <h5 style="background-color: #dddddd">既に登録済みの方</h5>
+      <h5 style="background-color: #cd5c5c; color: white;">既に登録済みの方</h5>
     </div>
   </div>
       <p class="col-md-4 text-center"><%= link_to 'こちら', new_customer_session_path %>　からログインしてください</p>

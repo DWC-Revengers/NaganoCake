@@ -1,36 +1,83 @@
 <div class="container">
   <div class="row">
     <div class="col-5 text-center" style="margin: 30px 0 35px 0; font-size: 40px;">
-      <h3 style="background-color: #dddddd"><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h2>
+      <h3 style="background-color: #cd5c5c; color: white;"><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h2>
 
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-12 text-center">
       <%= form_with model:@customer, url: admin_customer_path, local:true do |f| %>
-      <table class="table">
-        <tbody>
-          <tr><th><%= f.label :会員ID %></th><td><%= @customer.id %></td></tr>
-          <tr><th><%= f.label :氏名 %></th>
-          <td><%= f.text_field :family_name %>&nbsp;<%= f.text_field :first_name %></td></tr>
-          <tr><th><%= f.label :フリガナ %></th>
-          <td><%= f.text_field :family_name_kana %>&nbsp;<%= f.text_field :first_name_kana %></td></tr>
-          <tr><th><%= f.label :郵便番号 %></th><td><%= f.text_field :postal_code %></td></tr>
-          <tr><th><%= f.label :住所 %></th><td><%= f.text_field :address %></td></tr>
-          <tr><th><%= f.label :電話番号 %></th><td><%= f.text_field :phone_number %></td></tr>
-          <tr><th><%= f.label :メールアドレス %></th><td><%= f.text_field :email %></td></tr>
-          <tr>
-            <th><%= f.label :会員ステータス %></th>
-            <td>
-            <%= f.radio_button :is_deleted, :false %><%= f.label :有効 %>
-            <%= f.radio_button :is_deleted, :true %><%= f.label :退会 %>
-            </td>
-          </tr>
-          <th><%= f.submit '変更を保存', class: "btn btn-success" %></th>
-        </tbody>
-      </table>
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :会員ID %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+        <p><%= f.text_field :family_name %>&nbsp;<%= f.text_field :first_name %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :氏名 %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+          <p><%= f.text_field :family_name %>&nbsp;<%= f.text_field :first_name %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :フリガナ %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+          <p><%= f.text_field :family_name_kana %>&nbsp;<%= f.text_field :first_name_kana %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :郵便番号 %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+          <p><%= f.text_field :postal_code %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :住所 %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+        <p><%= f.text_field :address %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :電話番号 %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+        <p><%= f.text_field :phone_number %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :メールアドレス %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+        <p><%= f.text_field :email %></p>
+      </div>
+
+      <div class="row" style="font-size: 17px;">
+        <div class="col-md-2 text-left">
+          <%= f.label :会員ステータス %>
+        </div>
+        <div class="col-md-1 text-left"></div>
+        <p>
+          <%= f.radio_button :is_deleted, :false %><%= f.label :有効 %>
+          <%= f.radio_button :is_deleted, :true %><%= f.label :退会 %>
+        </p>
+      </div>
+
+      <div><%= f.submit '変更を保存', class: "btn btn-success" %></div>
       <% end %>
-    </div>  
-  </div>    
+    </div>
+  </div>
 </div>
