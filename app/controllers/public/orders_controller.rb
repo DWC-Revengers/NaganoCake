@@ -16,7 +16,16 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-    else
+    elsif params[:order][:address_status] == "2"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    #カスタマーの住所登録と入力内容の確認
+      @address = current_customer.addresses.build
+      @address.postal_code = params[:order][:postal_code]
+      @address.address = params[:order][:address]
+      @address.name = params[:order][:name]
+      @address.save
     end
     @cart_items = current_customer.cart_items
   end
