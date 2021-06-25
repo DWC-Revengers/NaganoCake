@@ -10,10 +10,10 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <header style="margin-bottom: 40px;">
+      <nav class="navbar navbar-expand-lg" style="background-color: #deb887; height: 100px;">
         <div class="container">
-          <h2>NaganoCake</h2>
+          <h2 class="badge badge-pill badge-secondary" style="font-size: 30px;">NaganoCake</h2>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -21,45 +21,45 @@
             <ul class="navbar-nav ml-auto">
               <% if manager_signed_in? %>
               <li>
-                <%= link_to "商品一覧", admin_sweets_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "商品一覧", admin_sweets_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "会員一覧", admin_customers_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "注文履歴一覧", admin_orders_path(address: 0), class: 'nav-link text-light text-dark' %>
+                <%= link_to "注文履歴一覧", admin_orders_path(address: 0), class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_manager_session_path, method: :delete, class: 'nav-link text-light text-dark' %>
+                <%= link_to "ログアウト", destroy_manager_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <% elsif customer_signed_in? %>
               <li>
-                <%= link_to "マイページ", public_customer_path(current_customer.id), class: 'nav-link text-light text-dark' %>
+                <%= link_to "マイページ", public_customer_path(current_customer.id), class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "商品一覧", public_sweets_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "商品一覧", public_sweets_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "カート", public_cart_items_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "カート", public_cart_items_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light text-dark' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <% else %>
               <li>
-                <%= link_to "About", public_about_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "About", public_about_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "商品一覧", public_sweets_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "商品一覧", public_sweets_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <li>
-                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light text-dark' %>
+                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link  badge badge-pill badge-secondary' %>
               </li>
               <% end %>
             </ul>
@@ -68,7 +68,14 @@
       </nav>
     </header>
     <%= yield %>
-    <footer class="bg-white pt-5 pb-5">
+    <footer style= "height: 100px; border-top: 1px solid black; margin-top: 20px;">
+      <div class="row" style="line-height: 100px;">
+        <p class="col-md-12 text-center">
+          /<strong>NaganoCake</strong>/
+          営業時間：AM.10:00 ~ PM.17:00
+          年中無休
+        </p>
+      </div>
     </footer>
   </body>
 </html>
