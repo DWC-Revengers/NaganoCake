@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+     <h2 class="my-5">会員一覧</h2>
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-12 text-center">
+     <table class="table table-hover table-bordered">
+
+      <thead class="thead-light">
+       <th scope="col">会員ID</th>
+       <th scope="col">氏名</th>
+       <th scope="col">メールアドレス</th>
+       <th scope="col">ステータス</th>
+      </thead>
+
+      <tbody>
+       <% @customer.each do |customer| %>
+          <tr>
+           <td><%= customer.id %></td>
+           <td><%= link_to admin_customer_path(customer.id), class: 'fonttext' do %>
+               <%= customer.family_name %><%= customer.first_name %><% end %></td>
+           <td><%= customer.email %></td>
+           <td><% if !customer.is_deleted %>
+           有効
+           <% else %>
+           退会
+           <% end %></td>
+
+          </tr>
+         <% end %>
+      </tbody>
+     </table>
+   </div>
+  </div>
+</div>

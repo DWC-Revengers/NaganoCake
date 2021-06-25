@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #cd5c5c; color: white;">ジャンル編集</h5>
+    </div>
+  </div>
+  <%= form_with model: @genre, url: admin_genre_path(@genre), local:true do |f| %>
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-2 text-center">
+        <h6>ジャンル名</h6>
+      </div>
+      <div class="col-md-3 text-center">
+        <%= f.text_field :name, autofocus: true, placeholder: "ジャンル名" %>
+      </div>
+      <div>
+        <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+      </div>
+      </div>
+  <% end %>
+</div>

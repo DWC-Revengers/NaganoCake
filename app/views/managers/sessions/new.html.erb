@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #cd5c5c; color: white;">管理者ログイン</h5>
+    </div>
+  </div>
+
+  <%= form_with model: @manager, url: manager_session_path, local: true do |f| %>
+    <%= render "managers/shared/error_messages", resource: resource %>
+
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-2 text-left">
+      </div>
+      <div class="col-md-2 text-left">
+        <%= f.label :メールアドレス %>
+      </div>
+      <div class="col-md-1 text-right">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %>
+      </div>
+    </div>
+
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-2 text-left">
+      </div>
+      <div class="col-md-2 text-left">
+        <%= f.label :password, "パスワード" %>
+      </div>
+      <div class="col-md-1 text-left">
+        <%= f.password_field :password, autocomplete: "current-password", size: 30 %>
+      </div>
+    </div>
+
+    <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-4 text-left"></div>
+        <div class="col-md-1 text-right" style="margin-top: 20px;">
+          <div class="actions">
+            <%= f.submit "ログイン", class: 'btn btn-sm btn-primary' %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>

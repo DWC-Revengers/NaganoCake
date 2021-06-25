@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+li {
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.notice {
+ font-size: 20px;
+ color: black;
+ text-align: center;
+}
+
+header,footer{
+  background-color: #d2b48c;
+  height: 100px;
+}
+
+body {
+  background-color: #ffebcd;
+}
+
+.table {
+  background-color: white;
+}
