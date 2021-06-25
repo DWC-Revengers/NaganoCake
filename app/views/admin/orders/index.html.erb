@@ -14,9 +14,18 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order.id) %></td>
-              <td><%= order.customer.family_name %><%= order.customer.first_name %></td>
               <td>
+                <%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order.id) %>
+              </td>
+              <td>
+                <%= order.customer.family_name %><%= order.customer.first_name %>
+              </td>
+              <td>
+                <% @amount = 0 %>
+                <% order.order_sweets.each do |order_sweet| %>
+                  <% @amount += order_sweet.amount %>
+                <% end %>
+                <%= @amount %>
               </td>
               <td><%= order.status %></td>
             </tr>

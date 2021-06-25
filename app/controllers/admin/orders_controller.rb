@@ -10,7 +10,6 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_sweets = @order.order_sweets
-    @sum = 0
   end
 
   def update

@@ -1,76 +1,120 @@
 <div class="container">
- <h2 class="my-5 text-center">注文履歴詳細</h2>
-  <div class="row justify-content-center">
-   <div class="col-xs-12">
-      <table class="table table-hover table-bordered">
-       <thead>
-        <tr><th>購入者</th><td><%= @order.customer.family_name %><%= @order.customer.first_name %></td></tr>
-        <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
-        <tr><th>発送先</th><td><%= @order.address %></td></tr>
-        <tr><th>支払方法</th><td><%= @order.payment_method %></td></tr>
-
-        <%= form_with model: @order, url: admin_order_path, local:true do |f| %>
-        <tr>
-          <th>注文ステータス</th>
-          <td><%= f.select :status, :name, Order.statuses.values.to_a %></td>
-          <td><%= f.submit "更新", class: "btn btn-success" %></td>
-        <% end %>
-        </tr>
-       </thead>
-      </table>
+  <div class="row">
+    <div class="col-md-2 text-center" style="margin: 30px 0 35px 0;">
+      <h5 style="background-color: #f5f5f5">注文履歴詳細</h5>
     </div>
   </div>
-
-  <div class="row justify-content-center">
-    <div class="col-xs-8">
-      <table class="table table-hover table-bordered">
-        <thead class="thead-light">
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <p class="font-weight-bold">購入者</p>
+    </div>
+    <div class="col-md-8 text-left">
+      <%= @order.customer.family_name %><%= @order.customer.first_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <p class="font-weight-bold">注文日</p>
+    </div>
+    <div class="col-md-8 text-left">
+      <%= @order.created_at.strftime('%Y/%m/%d') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <p class="font-weight-bold">発送先</p>
+    </div>
+    <div class="col-md-8 text-left">
+      <%= @order.postal_code %>
+      <%= @order.address %></br>
+      <%= @order.name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <p class="font-weight-bold">支払い方法</p>
+    </div>
+    <div class="col-md-8 text-left">
+      <%= @order.payment_method %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <p class="font-weight-bold">注文ステータス</p>
+    </div>
+    <%= form_with model: @order, url: admin_order_path, local:true do |f| %>
+    <div class="row">
+      <div class="col-md-8 text-center">
+        <%= f.select :status, Order.statuses.keys %>
+      </div>
+      <div class="col-md-4 text-left">
+        <%= f.submit "更新", class: "btn btn-success btn-sm" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div style="margin: 10px 0 10px 0"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-borderless">
+        <thead style="background-color: #f5f5f5">
           <tr>
             <th>商品名</th>
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
             <th>製作ステータス</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <% @cart_items.each do |cart| %>
+          <% @item_total = 0 %>
+          <% @order_sweets.each do |order_sweet| %>
           <tr>
-            <td><%= cart.sweet.name %></td>
-            <td><%= cart.sweet.sub_price.to_s(:delimited) %></td>
-            <td><%= cart.sweet.amount %></td>
-            <td><%= (cart.sweet.sub_price.to_i * cart.amount.to_i).to_s(:delimited) %></td>
-            <% @sum += (cart.sweet.sub_price.to_i * cart.amount.to_i) %>
-            <td>
-              <%= form_with model: @order_sweet, url: admin_order_sweet_path(order_sweet.id), local:true do |f| %>
-                <%= f.select :making_status, :name, OrderSweet.statuses.values.to_a %>
-                <%= f.submit "更新" ,class: "btn btn-success" %>
-              <% end %>
-            </td>
+            <td><%= order_sweet.sweet.name %></td>
+            <td><%= tax_price(order_sweet.sweet.unit_price).to_s(:delimited) %></td>
+            <td><%= order_sweet.amount %></td>
+            <td><%= sub_total(order_sweet).to_s(:delimited) %></td>
+            <% @item_total =+ sub_total(order_sweet) %>
+            <%= form_with model: order_sweet, url: admin_order_sweet_path(order_sweet.id), method: :patch, local:true do |f| %>
+              <td><%= f.select :making_status, OrderSweet.making_statuses.keys %></td>
+              <td><%= f.submit "更新" ,class: "btn btn-success btn-sm" %></td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>
       </table>
-
-      <div class="col-xs-3 off-set-1">
-       <table class="table table-hover table-bordered">
-          <tr>
-            <th>商品合計</th>
-            <td class="text-right col-xs-5"><%= (@order.shipping - @order.total_price).to_s(:delimited) %>円</td>
-          </tr>
-          <tr>
-            <th>送料</th>
-            <td class="text-right col-xs-5"><%= @order.shopping.to_s(:delimited) %>円</td>
-          </tr>
-          <tr>
-            <th>請求金額合計</th>
-          　<td class="text-right col-xs-5"><%= @order.total_price.to_s(:delimited) %>円</td>
-          </tr>
-          <tr>
-            <th></th>
-            <td class="text-right col-xs-5"><%= link_to "注文履歴へ戻る", admin_order_path, class:"btn btn-secondary"%></td>
-          </tr>
-       </table>
+    </div>
+    <div class="col-md-3">
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-md-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 text-left">
+          <p class="font-weight-bold">商品合計</p>
+        </div>
+        <div class="col-md-5 text-right">
+          <% @item_total = total_price(@order_sweets) - @order.shipping %>
+          <%= @item_total %>円
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 text-left">
+          <p class="font-weight-bold">送料</p>
+        </div>
+        <div class="col-md-5 text-right">
+          <%= @order.shipping %>円
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 text-left">
+          <p class="font-weight-bold">請求金額合計</p>
+        </div>
+        <div class="col-md-5 text-right">
+          <%= total_price(@order_sweets).to_s(:delimited) %> 円
+        </div>
       </div>
     </div>
   </div>
