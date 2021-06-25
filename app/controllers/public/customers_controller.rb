@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to public_customer_path
+    redirect_to public_customer_path, notice: '会員情報を更新しました'
   end
 
   def hide
@@ -22,7 +22,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
     reset_session
-    redirect_to public_root_path
+    redirect_to public_root_path, notice: 'ご利用ありがとうございました'
   end
 
   private

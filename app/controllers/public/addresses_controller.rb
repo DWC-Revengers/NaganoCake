@@ -8,7 +8,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     @address.save
-    redirect_to public_addresses_path
+    redirect_to public_addresses_path, notice: '新しい住所が作成されました'
   end
 
   def edit
@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     @address.update(address_params)
-    redirect_to public_addresses_path
+    redirect_to public_addresses_path, notice: '住所が更新されました'
   end
 
   def destroy

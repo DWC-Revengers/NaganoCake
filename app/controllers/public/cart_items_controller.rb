@@ -8,10 +8,10 @@ class Public::CartItemsController < ApplicationController
     if @test.present?
       @test.amount += params[:cart_item][:amount].to_i
       @test.save
-      redirect_to public_cart_items_path
+      redirect_to public_cart_items_path, notice: 'カートに商品が追加されました'
     else
       cart_item.save
-      redirect_to public_cart_items_path
+      redirect_to public_cart_items_path, notice: 'カートに商品が追加されました'
     end
   end
 
@@ -22,19 +22,19 @@ class Public::CartItemsController < ApplicationController
   def update
     item = CartItem.find(params[:id])
     item.update(cart_item_params)
-    redirect_to public_cart_items_path
+    redirect_to public_cart_items_path, notice: 'カート内の商品が変更されました'
   end
 
   def destroy
     item = CartItem.find(params[:id])
     item.destroy
-    redirect_to public_cart_items_path
+    redirect_to public_cart_items_path, notice: 'カート内の商品が削除されました'
   end
 
   def destroy_all
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
-    redirect_to public_cart_items_path
+    redirect_to public_cart_items_path, notice: 'カート内の全ての商品が削除されました'
   end
 
   private
